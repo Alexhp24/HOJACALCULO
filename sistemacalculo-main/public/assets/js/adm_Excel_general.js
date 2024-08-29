@@ -4,41 +4,48 @@ $(document).ready(function () {
         //variables generales
         const tabla = {
             A: {
-                Eprom:	130000,
-                fm:	210,
-                fc:	145,
-                fct:	40,
-                fv	:15,
-                ft	:145
-
+                Eprom: 130000,
+                fm: 210,
+                fc: 145,
+                fct: 40,
+                fv: 15,
+                ft: 145,
             },
 
             B: {
-                Eprom :130000,
-                fm:210,
-                fc:145,
-                fct:40,
-                fv:15,
-                ft:145
+                Eprom: 130000,
+                fm: 210,
+                fc: 145,
+                fct: 40,
+                fv: 15,
+                ft: 145,
             },
             C: {
-                Eprom :90000,
-                fm:100,
-                fc:80,
-                fct:15,
-                fv:8,
-                ft:75
-            }
-        }
+                Eprom: 90000,
+                fm: 100,
+                fc: 80,
+                fct: 15,
+                fv: 8,
+                ft: 75,
+            },
+        };
         const selectabc = document.getElementById("selectabc").value;
         const fcprime = parseFloat(document.getElementById("fcprime").value);
         const fy = parseFloat(document.getElementById("fy").value);
         const base = parseFloat(document.getElementById("base").value);
-        const altura = parseFloat(document.getElementById("altura").value);      
-        const momentoultimo = parseFloat(document.getElementById("momentoultimo").value);
-        const vucortante = parseFloat(document.getElementById("vucortante").value);
-        const cieloraso = parseFloat(document.getElementById("cieloraso").value);
-        const sobrecarga = parseFloat(document.getElementById("sobrecarga").value);
+        const altura = parseFloat(document.getElementById("altura").value);
+        const momentoultimo = parseFloat(
+            document.getElementById("momentoultimo").value
+        );
+        const vucortante = parseFloat(
+            document.getElementById("vucortante").value
+        );
+        const cieloraso = parseFloat(
+            document.getElementById("cieloraso").value
+        );
+        const sobrecarga = parseFloat(
+            document.getElementById("sobrecarga").value
+        );
 
         const Emin = tabla[selectabc].Eprom;
         const fm = tabla[selectabc].fm;
@@ -47,8 +54,7 @@ $(document).ready(function () {
         const fv = tabla[selectabc].fv;
         const ft = tabla[selectabc].ft;
 
-
-        document.getElementById("predimenension").innerHTML += `
+        document.getElementById("predimenension").innerHTML = `
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>Modulo de elasticidad</td>
             <td class='py-2 px-4'>Emin</td>
@@ -87,9 +93,9 @@ $(document).ready(function () {
         </tr>`;
 
         const b = fcprime * 2.54;
-        const h =fy * 2.54;
+        const h = fy * 2.54;
 
-         document.getElementById("dimensionamiento").innerHTML += `
+        document.getElementById("dimensionamiento").innerHTML = `
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>- </td>
             <td class='py-2 px-4'>a</td>
@@ -103,12 +109,12 @@ $(document).ready(function () {
             <td class='py-2 px-4 text-center'>${h} cm</td>
         </tr>
          `;
-         const CM = momentoultimo + vucortante + cieloraso;
-         const CV = sobrecarga;
-         const CMCV = CM+CV;
-         const W = CMCV*altura;
+        const CM = momentoultimo + vucortante + cieloraso;
+        const CV = sobrecarga;
+        const CMCV = CM + CV;
+        const W = CMCV * altura;
 
-        document.getElementById("combinaciondecargas").innerHTML += `
+        document.getElementById("combinaciondecargas").innerHTML = `
          <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>- </td>
             <td class='py-2 px-4'>CM</td>
@@ -136,177 +142,248 @@ $(document).ready(function () {
        </tr>
        
        `;
-       
+        //    const modelo1 = C50;
 
+        const momento = (W * base * base) / 8;
+        const cortante = (W * base) / 2;
 
-        document.getElementById("analisisestructural").innerHTML += `
+        document.getElementById("analisisestructural").innerHTML = `
          <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>W</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${W} kg/m></td>
+            <td class='py-2 px-4 text-center'>${W.toFixed(2)} kg/m</td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>-</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 84.38kg></td>
+            <td class='py-2 px-4 text-center'>${cortante.toFixed(2)} kg</td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>-</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 52.73kg-m></td>
+            <td class='py-2 px-4 text-center'>${momento.toFixed(2)} kg-m</td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>-</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 84.38kg></td>
+            <td class='py-2 px-4 text-center'>${cortante.toFixed(2)} kg</td>
         </tr>
+
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>Momento</td>
             <td class='py-2 px-4'>-</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 52.73kg-m></td>
+            <td class='py-2 px-4 text-center'>${momento.toFixed(2)} kg-m</td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>Cortante</td>
             <td class='py-2 px-4'>-</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 84.38kg-m></td>
+            <td class='py-2 px-4 text-center'>${cortante.toFixed(2)} kg</td>
         </tr>
         `;
-        document.getElementById("desingFlexion").innerHTML += ` `;
-        document.getElementById("modulo41").innerHTML += `
+
+        document.getElementById("desingFlexion").innerHTML = ` `;
+        const nosale = fm + 0.1 * fm;
+
+        const Zrequerido = (momento * 100) / nosale;
+
+        const Z = (b * h * h) / 6;
+
+        let ZZreqCUMPLE;
+        if (Z > Zrequerido) {
+            ZZreqCUMPLE = "CUMPLE";
+        } else {
+            ZZreqCUMPLE = "NO";
+        }
+
+        document.getElementById("modulo41").innerHTML = `
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>1.1fm</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 231kg/cm<sup>2</sup>></td>
+            <td class='py-2 px-4 text-center'>${nosale.toFixed(2)} kg/cm<sup>2</sup>></td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>Zrequerido</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 22.83kg/cm<sup>3</sup>></td>
+            <td class='py-2 px-4 text-center'>${Zrequerido.toFixed(2)} kg/cm<sup>3</sup>></td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>Z</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 231kg/cm<sup>3</sup></td>
+            <td class='py-2 px-4 text-center'>${Z.toFixed(2)} kg/cm<sup>3</sup></td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
-            <td class='py-2 px-8'></td>
-            <td class='py-2 px-8'></td>
-            <td class='py-2 px-8'>ZZreq CUMPLE</td>
-            <td class='py-2 px-8'></td>
-           
+            <td class='py-2 px-8'>-</td>
+            <td class='py-2 px-8'>Z>Zreq</td>
+            <td class='py-2 px-8'>-</td>
+            <td class='py-2 px-8'>${ZZreqCUMPLE}</td>     
         </tr>
         `;
-        document.getElementById("modulo42").innerHTML += `
+        const W01 = 1.8 * CM * altura + CV * altura;
+        const W02 = CV * altura;
+        const K1 = 250;
+        const L1 = (5 * W01 * base * base * base * K1) / (0.0384 * Emin);
+        const K2 = 350;
+        const L2 = (5 * W02 * base * base * base * K2) / (0.0384 * Emin);
+        const Imax = Math.max(L1, L2);
+        const L3 = (b * h * h * h) / 12;
+        let Imax02;
+
+        if (L3 > Imax) {
+            Imax02 = "CUMPLE";
+        } else {
+            Imax02 = "NO";
+        }
+
+        document.getElementById("modulo42").innerHTML = `
          <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>(solo calculo de flecciones)</td>
             <td class='py-2 px-4'>W<sub>equivalente</sub></td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 1.8W<sub>d</sub>+W<sub>1</sub></td>
+            <td class='py-2 px-4 text-center'>${fy.toFixed(2)} 1.8W<sub>d</sub>+W<sub>1</sub></td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>W<sub>e</sub>1</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 85.5kg/m</td>
+            <td class='py-2 px-4 text-center'>${W01.toFixed(2)} kg/m</td>
         </tr>
          <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>W<sub></sub>2</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 45kg/m</td>
+            <td class='py-2 px-4 text-center'>${W02.toFixed(2)} kg/m</td>
         </tr>
          <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>PARA LA CARGAR TOTAL</td>
             <td class='py-2 px-4'>K</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 250</td>
+            <td class='py-2 px-4 text-center'>${K1.toFixed(2)} </td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>I</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 334.52</td>
+            <td class='py-2 px-4 text-center'>${L1.toFixed(2)} </td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>PARA LA SOBRECARGA</td>
             <td class='py-2 px-4'>K</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 350</td>
+            <td class='py-2 px-4 text-center'>${K2.toFixed(2)} </td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>I</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 246.49</td>
+            <td class='py-2 px-4 text-center'>${L2.toFixed(2)} </td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>Imax</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 334.52 cm<sup>4</sup></td>
+            <td class='py-2 px-4 text-center'>${Imax.toFixed(2)} cm<sup>4</sup></td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>I</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 443.98 cm<sup>4</sup></td>
+            <td class='py-2 px-4 text-center'>${L3.toFixed(2)} cm<sup>4</sup></td>
         </tr>
+        <tr class="bg-gray-100 dark:bg-gray-600">
+            <td class='py-2 px-8'>-</td>
+            <td class='py-2 px-4'>|>|max</td>
+            <td class='py-2 px-4'>-</td>
+            <td class='py-2 px-4 text-center'>${Imax02}</td>
+        </tr>     
         `;
-        document.getElementById("modulo43").innerHTML += `
-        <tr class="bg-gray-100 dark:bg-gray-600">
-            <td class='py-2 px-8'>-</td>
-            <td class='py-2 px-4'>I</td>
-            <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 77.5 Kg</td>
-        </tr>
+        const VH= cortante-W*h/100;
+        const V = 50;
+        const fv11 = fv+0.1*fv;
+        const th = 3*VH/(2*b*h);
+        let fvt;
+        if ( fv11 > th ){
+            fvt= "CUMPLE";
+        }else{
+            fvt="NO";
+        }
+        const t = 3*cortante/(2*b*h);
+        let fvt02;
+        if ( fv11 > t ){
+            fvt02= "CUMPLE";
+        }else{
+            fvt02="NO";
+        }
+
+
+
+        document.getElementById("modulo43").innerHTML = `
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>V<sub>(h)</sub></td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 84.38 Kg</td>
+            <td class='py-2 px-4 text-center'>${VH.toFixed(2)} Kg</td>
+        </tr>
+        <tr class="bg-gray-100 dark:bg-gray-600">
+            <td class='py-2 px-8'>-</td>
+            <td class='py-2 px-4'>V</td>
+            <td class='py-2 px-4'>-</td>
+            <td class='py-2 px-4 text-center'>${V.toFixed(2)} Kg</td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>1.1fv</td>
             <td class='py-2 px-4'>-</td>
-            <td class='py-2 px-4 text-center'>${fy} 16.5Kg/cm<sup>2</sup></td>
+            <td class='py-2 px-4 text-center'>${fv11.toFixed(2)} Kg/cm<sup>2</sup></td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>t<sub>(h)</sub></td>
-            <td class='py-2 px-4'>1.1fv>t<sub>h</sub></td>
-            <td class='py-2 px-4 text-center'>${fy} 2.25Kg/cm<sup>2</sup></td>
+            <td class='py-2 px-4'>-</td>
+            <td class='py-2 px-4 text-center'>${th.toFixed(2)} Kg/cm<sup>2</sup></td>
+        </tr>
+        <tr class="bg-gray-100 dark:bg-gray-600">
+            <td class='py-2 px-8'>-</td>
+            <td class='py-2 px-4'>1.1fv>t<sub>h</sub></sub></td>
+            <td class='py-2 px-4'>-</td>
+            <td class='py-2 px-4 text-center'>${fvt}</td>
         </tr>
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>t</td>
+            <td class='py-2 px-4'></td>
+            <td class='py-2 px-4 text-center'>${t.toFixed(2)} Kg/cm<sup>2</sup></td>
+        </tr>
+         <tr class="bg-gray-100 dark:bg-gray-600">
+            <td class='py-2 px-8'>-</td>
+            <td class='py-2 px-4'>-</sub></td>
             <td class='py-2 px-4'>1.1fv>t</td>
-            <td class='py-2 px-4 text-center'>${fy} 2.45Kg/cm<sup>2</sup></td>
+            <td class='py-2 px-4 text-center'>${fvt02}</td>
         </tr>
         `;
-        document.getElementById("modulo44").innerHTML += `
+        const hb =h/b;
+        document.getElementById("modulo44").innerHTML = `
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>h/b</td>
             <td class='py-2 px-4'></td>
-            <td class='py-2 px-4 text-center'>${fy} 2.00</td>
+            <td class='py-2 px-4 text-center'>${hb.toFixed(2)}</td>
         </tr>`;
-        document.getElementById("modulo45").innerHTML += `
+        const a = cortante/(fct*b);
+        document.getElementById("modulo45").innerHTML = `
         <tr class="bg-gray-100 dark:bg-gray-600">
             <td class='py-2 px-8'>-</td>
             <td class='py-2 px-4'>a</td>
             <td class='py-2 px-4'></td>
-            <td class='py-2 px-4 text-center'>${fy} 0.42cm</td>
+            <td class='py-2 px-4 text-center'>${a.toFixed(2) } cm</td>
         </tr>`;
-
     });
 });

@@ -19,7 +19,7 @@
                     <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Datos Generales</h3>
                         <div class="overflow-auto">
-                            <table class="table-auto w-full text-gray-800 dark:text-white px-6">
+                            <table class="table-fixed w-full text-gray-800 dark:text-white px-6">
                                 <thead class="bg-white dark:bg-gray-800">
                                     <tr class="text-center">
                                         <th class="py-2 px-4">Nombre</th>
@@ -31,7 +31,7 @@
                                 <tbody class="text-center">
                                     <tr class="bg-white dark:bg-gray-800">
                                         <th class="py-2 px-4">-</th>
-                                        <th class="py-2 px-4">A= </th>
+                                        <th class="py-2 px-4">-</th>
                                         <th class="py-2 px-4">
                                             <select name="selectabc" id="selectabc" class="form-control w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 px-1 rounded-md" >
                                                 <option value="A" selected>A</option>
@@ -186,12 +186,24 @@
                                     <tr class="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
                                         <th class="text-xl py-2 px-4 text-left" colspan="4">4.1- Vereficacion del modulo de seccion</th>
                                     </tr>
+                                    <tr class="bg-gray-500 text-white dark:bg-gray-500 dark:text-white">
+                                        <th class="text-xl" scope="col">Nombre</th>
+                                        <th class="text-xl" scope="col">Simbolo</th>
+                                        <th class="text-xl" scope="col">Formula</th>
+                                        <th class="text-xl" scope="col">Resultado</th>
+                                    </tr>
                                 </thead>
                                 <tbody id="modulo41" class="py-2"></tbody>
 
                                 <thead class="bg-gray-200 dark:bg-gray-700">
                                     <tr class="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
                                         <th class="text-xl py-2 px-4 text-left" colspan="4">4.2- Vereficacion de inercias</th>
+                                    </tr>
+                                    <tr class="bg-gray-500 text-white dark:bg-gray-500 dark:text-white">
+                                        <th class="text-xl" scope="col">Nombre</th>
+                                        <th class="text-xl" scope="col">Simbolo</th>
+                                        <th class="text-xl" scope="col">Formula</th>
+                                        <th class="text-xl" scope="col">Resultado</th>
                                     </tr>
                                 </thead>
                                 <tbody id="modulo42" class="py-2"></tbody>
@@ -200,6 +212,12 @@
                                     <tr class="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
                                         <th class="text-xl py-2 px-4 text-left" colspan="4">4.3- Vereficacion de esfuerzo cortante</th>
                                     </tr>
+                                    <tr class="bg-gray-500 text-white dark:bg-gray-500 dark:text-white">
+                                        <th class="text-xl" scope="col">Nombre</th>
+                                        <th class="text-xl" scope="col">Simbolo</th>
+                                        <th class="text-xl" scope="col">Formula</th>
+                                        <th class="text-xl" scope="col">Resultado</th>
+                                    </tr>
                                 </thead>
                                 <tbody id="modulo43" class="py-2"></tbody>
 
@@ -207,11 +225,23 @@
                                     <tr class="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
                                         <th class="text-xl py-2 px-4 text-left" colspan="4">4.4- Vereficacion de la estabilidad lateral</th>
                                     </tr>
+                                    <tr class="bg-gray-500 text-white dark:bg-gray-500 dark:text-white">
+                                        <th class="text-xl" scope="col">Nombre</th>
+                                        <th class="text-xl" scope="col">Simbolo</th>
+                                        <th class="text-xl" scope="col">Formula</th>
+                                        <th class="text-xl" scope="col">Resultado</th>
+                                    </tr>
                                 </thead>
                                 <tbody id="modulo44" class="py-2"></tbody>
                                 <thead class="bg-gray-200 dark:bg-gray-700">
                                     <tr class="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
                                         <th class="text-xl py-2 px-4 text-left" colspan="4">4.4- Vereficacion de la estabilidad lateral</th>
+                                    </tr>
+                                    <tr class="bg-gray-500 text-white dark:bg-gray-500 dark:text-white">
+                                        <th class="text-xl" scope="col">Nombre</th>
+                                        <th class="text-xl" scope="col">Simbolo</th>
+                                        <th class="text-xl" scope="col">Formula</th>
+                                        <th class="text-xl" scope="col">Resultado</th>
                                     </tr>
                                 </thead>
                                 <tbody id="modulo45" class="py-2"></tbody>
